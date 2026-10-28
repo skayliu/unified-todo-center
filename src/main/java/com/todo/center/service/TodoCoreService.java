@@ -120,7 +120,7 @@ public class TodoCoreService {
         List<UniTodoMain> todoList = todoMainRepository.findByReceiverIdAndStatusOrderByCreateTimeDesc(userId, 1);
         // 再查Camunda原生任务，同步到待办表
         List<Task> camundaTasks = taskService.createTaskQuery()
-                .assignee(userId)
+                .taskAssignee(userId)
                 .active()
                 .list();
         // 自动同步Camunda任务到统一待办表
